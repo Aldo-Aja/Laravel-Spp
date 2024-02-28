@@ -18,4 +18,33 @@ class Login extends Controller
 
         return view('login');
     }
+
+    public function proses(Request $request){
+        $request->validate([
+            'username' => 'required',
+            'password' => 'required'
+        ]);
+
+        $kredensial = $request->only('username', 'password');
+        if (Auth::attempt($kredensial)) {
+            $request->session()->regenerate();
+            $user = Auth::user();
+            if ($user->level == 'admin') {
+                return redirect()->intended('admin');
+            } elseif ($user->level =='siswa') {
+                return redirect()->intended('siswa');
+            }
+        }
+
+        return back()->withErrors([
+            'gagal' => 'Maaf Username atau Password anda Salah'
+        ])->onlyInput('username');
+    }
+
+    public function logout(Request $request){
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('login');
+    }
 }

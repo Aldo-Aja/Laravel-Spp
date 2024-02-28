@@ -33,7 +33,7 @@
                                             <input type="text" class="form-control form-control-user" id="username" aria-describedby="emailHelp" placeholder="Username" name="username" autofocus required value="{{ old('username') }}">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" id="password" placeholder="Password" name="password" required>
+                                            <input type="password" id="password" placeholder="Password" name="password" class="form-control form-control-user" required>
                                         </div>
                                         <input type="submit" class="btn btn-primary btn-user btn-block" name="login" value="Login">
                                         <hr>
