@@ -54,6 +54,7 @@
     <!-- Custom scripts for all pages-->
     <script src="../../template/js/sb-admin-2.min.js"></script>
     <script src="../../template/js/sweetalert2@11.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         @error('gagal')
         const Toast = Swal.mixin({
