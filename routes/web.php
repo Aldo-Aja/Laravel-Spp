@@ -17,16 +17,14 @@ use App\Http\Controllers\Spp;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-//Login Routes
-Route::get('/login', [Login::class, 'index'])->name('login');
+// Login Routes
+Route::get('/', [Login::class, 'index'])->name('login');
+Route::get('/forgot-password', [Login::class, 'forgot_password'])->name('forgot-password');
+Route::post('/forgot-password-act', [Login::class, 'forgot_password_act'])->name('forgot-password-act');
 Route::post('/login/proses', [Login::class, 'proses']);
 Route::get('/logout', [Login::class, 'logout'])->name('logout');
 
-//Middleware
+// Middleware
 Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['cekUserLogin:admin']], function () {
         Route::resource('admin', Spp::class);
@@ -35,11 +33,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('/pembayaran/delete/{id}', [Spp::class, 'delete'])->name('pembayaran.delete');
         Route::get('/pembayaran/edit/{id}', [Spp::class, 'edit'])->name('pembayaran.edit');
         Route::put('/pembayaran/update/{id}', [Spp::class, 'update'])->name('pembayaran.update');
-
     });
     Route::group(['middleware' => ['cekUserLogin:siswa']], function () {
         Route::resource('siswa', Siswa::class);
         Route::get('/siswa', [Siswa::class, 'index']);
-
     });
 });

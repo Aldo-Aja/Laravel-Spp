@@ -38,6 +38,12 @@
                                         <input type="submit" class="btn btn-primary btn-user btn-block" name="login" value="Login">
                                         <hr>
                                     </form>
+                                    {{-- <div class="text-center">
+                                        <button class="btn btn-primary btn-user btn-block"><a class="small text-white"  href="#">Buat Akun</a></button>
+                                    </div> --}}
+                                    <div class="text-right">
+                                        <a class="small" href="{{ route('forgot-password') }}">Lupa Password??</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

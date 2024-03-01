@@ -10,6 +10,7 @@
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">CRUD Laravel
                 <button class="btn btn-sm btn-primary float-right" data-toggle="modal" data-target="#tambahData">Tambah Data</button>
+                <button class="btn btn-sm btn-success float-right mr-2" onclick="printTable()">Print</button>
             </h6>
         </div>
         <div class="card-body">
@@ -115,7 +116,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Save Chages</button>
+                    <button type="submit" class="btn btn-primary" onclick="confirmEdit({{$row->id}})">Save Chages</button>
                 </div>
                 </form>
             </div>
@@ -126,6 +127,29 @@
 @endsection
 
 @section('js')
+<script>
+    function printTable() {
+        window.print();
+    }
+</script>
+<script>
+    function confirmEdit(id) {
+        Swal.fire({
+            title: "Apakah Ingin Menyimpan Data?",
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: "Simpan",
+            denyButtonText: `Jangan Simpan`
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('editForm'+id).submit();
+                Swal.fire("Tersimpan!", "", "success");
+            } else if (result.isDenied) {
+                Swal.fire("Perubahan Tidak Jadi di Simpan", "", "info");
+            }
+        });
+    }
+</script>
 @if (session('dataTambah'))
 <script>
 
@@ -135,25 +159,6 @@
         title: "Data Berhasil Ditambah",
         showConfirmButton: false,
         timer: 1500
-    });
-</script>
-@endif
-@if (session('dataEdit'))
-<script>
-
-    Swal.fire({
-        title: "Apakah Ingin Menyimpan Data?",
-        showDenyButton: true,
-        showCancelButton: true,
-        confirmButtonText: "Simpan",
-        denyButtonText: `Jangan Simpan`
-    }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
-        if (result.isConfirmed) {
-            Swal.fire("Tersimpan!", "", "success");
-        } else if (result.isDenied) {
-            Swal.fire("Perubahan Tidak Jadi di Simpan", "", "info");
-        }
     });
 </script>
 @endif

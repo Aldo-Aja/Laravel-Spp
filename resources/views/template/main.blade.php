@@ -23,9 +23,9 @@
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-cube"></i>
+          <i class="fa fa-money"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">INVENTORY</div>
+        <div class="sidebar-brand-text mx-3">APLIKASI SPP</div>
       </a>
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
@@ -55,7 +55,7 @@
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="{{ route('logout') }}">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Logout
                 </a>

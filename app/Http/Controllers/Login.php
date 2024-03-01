@@ -16,7 +16,11 @@ class Login extends Controller
             }
         }
 
-        return view('login');
+        return view('auth.login');
+    }
+
+    public function forgot_password(){
+        return view('auth.forgot-password');
     }
 
     public function proses(Request $request){
@@ -45,6 +49,6 @@ class Login extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('login');
+        return redirect('/');
     }
 }
